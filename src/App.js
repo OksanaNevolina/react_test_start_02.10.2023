@@ -7,21 +7,34 @@ export  const Context = createContext(null);
 const App = () => {
 
     const [users,setUsers] = useState([]);
-    // const [posts,setPosts] = useState([]);
+
+    const [posts,setPosts] = useState([]);
+
+    const [usersId,setUsersId] = useState({});
+    console.log(usersId)
+
+
 
     useEffect(()=>{
         fetch('https://jsonplaceholder.typicode.com/users')
             .then(value => value.json())
             .then(value => setUsers(value))
     },[])
-    console.log(users)
 
 
-    // useEffect(()=>{},[])
+    useEffect(()=>{
+        fetch(`https://jsonplaceholder.typicode.com/users/${usersId.id}/posts`)
+            .then(value => value.json())
+            .then(value => setPosts(value))
+    },[usersId.id])
+
+
+
+
 
     return (
         <div>
-            <Context.Provider value={users}>
+            <Context.Provider value={{users,setUsersId,posts,usersId}}>
              <Users/>
             <Posts/>
             </Context.Provider>

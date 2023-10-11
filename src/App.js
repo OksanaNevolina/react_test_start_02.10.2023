@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import CarsForm from "./components/CarsForm";
+import Cars from "./components/Cars";
 
-function App() {
+const App = () => {
+    const [trigger,setTrigger] = useState(null);
+    const [carForUpdate,setСarForUpdate] = useState(null);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        <CarsForm setTrigger={setTrigger} carForUpdate={carForUpdate} setСarForUpdate={setСarForUpdate}/>
+          <hr/>
+          <Cars trigger={trigger} setTrigger={setTrigger} setСarForUpdate={setСarForUpdate}/>
+      </div>
   );
-}
+};
 
 export default App;
